@@ -4,25 +4,43 @@
     <meta charset="UTF-8" />
     <title>YT-DLP GUI</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1>YT-DLP GUI</h1>
-    <input type="text" id="video-url" placeholder="Enter video URL" />
-    <button id="get-info">Get Info</button>
+    <h1>YouTube Downloader</h1>
+    <div class="input-container">
+      <input
+        type="text"
+        id="video-url"
+        placeholder="Paste YouTube URL here..."
+      />
+      <button id="get-info">Get Info</button>
+    </div>
     <div id="video-info"></div>
-    <div id="format-selectors" style="display: none; margin-top: 20px">
-      <label for="video-type">Type:</label>
-      <select id="video-type">
-        <option value="video">Video</option>
-        <option value="audio">Audio</option>
-      </select>
-      <label for="video-quality">Video Quality:</label>
-      <select id="video-quality"></select>
-      <label for="audio-quality">Audio Quality:</label>
-      <select id="audio-quality"></select>
+    <div id="format-selectors" style="display: none">
+      <div class="format-group">
+        <div class="format-select">
+          <label for="video-type">Download Type</label>
+          <select id="video-type">
+            <option value="video">Video</option>
+            <option value="audio">Audio Only</option>
+          </select>
+        </div>
+        <div class="format-select">
+          <label for="video-quality">Video Quality</label>
+          <select id="video-quality"></select>
+        </div>
+        <div class="format-select">
+          <label for="audio-quality">Audio Quality</label>
+          <select id="audio-quality"></select>
+        </div>
+      </div>
       <button id="download-btn">Download</button>
     </div>
-    <div id="download-status" style="margin-top: 20px"></div>
+    <div id="download-status"></div>
     <script src="renderer.js"></script>
   </body>
 </html>
