@@ -189,7 +189,11 @@ downloadBtn.addEventListener("click", async () => {
       formatId = `${videoId}+${audioId}`; // This tells yt-dlp to merge video and audio
     }
 
-    const result = await window.ytDlp.downloadVideo(url, formatId);
+    const result = await window.ytDlp.downloadVideo(
+      url,
+      formatId,
+      currentVideoInfo
+    );
 
     if (result.error) {
       downloadStatus.className = "error";

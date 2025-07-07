@@ -40,12 +40,38 @@ app.whenReady().then(() => {
   // IPC handler to download video
   const { dialog } = require("electron");
   const fs = require("fs");
-  ipcMain.handle("download-video", async (event, url, formatId) => {
+  ipcMain.handle("download-video", async (event, url, formatId, videoInfo) => {
     try {
+      // Determine file extension based on format type
+      const isAudioOnly =
+        !formatId.includes("+") &&
+        videoInfo.formats.find((f) => f.format_id === formatId)?.vcodec ===
+          "none";
+
+      // Clean the video title to make it filesystem-safe
+      const cleanTitle = (videoInfo.title || "video")
+        .replace(/[<>:"/\\|?*]/g, "") // Remove invalid filesystem characters
+        .replace(/\s+/g, "_"); // Replace spaces with underscores
+
+      // Set default extension based on format
+      const defaultExt = isAudioOnly ? ".mp3" : ".mp4";
+
       // Ask user where to save the file
       const { canceled, filePath } = await dialog.showSaveDialog({
         title: "Save Video",
-        defaultPath: "video",
+        defaultPath: path.join(
+          app.getPath("downloads"),
+          cleanTitle + defaultExt
+        ),
+        filters: [
+          {
+            name: isAudioOnly ? "Audio Files" : "Video Files",
+            extensions: isAudioOnly
+              ? ["mp3", "m4a", "opus"]
+              : ["mp4", "mkv", "webm"],
+          },
+          { name: "All Files", extensions: ["*"] },
+        ],
       });
       if (canceled || !filePath) return { error: "Save cancelled" };
 
