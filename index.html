@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>YT-DLP GUI</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>YT-DLP GUI</h1>
+    <input type="text" id="video-url" placeholder="Enter video URL" />
+    <button id="get-info">Get Info</button>
+    <div id="video-info"></div>
+    <div id="format-selectors" style="display: none; margin-top: 20px">
+      <label for="video-type">Type:</label>
+      <select id="video-type">
+        <option value="video">Video</option>
+        <option value="audio">Audio</option>
+      </select>
+      <label for="video-quality">Video Quality:</label>
+      <select id="video-quality"></select>
+      <label for="audio-quality">Audio Quality:</label>
+      <select id="audio-quality"></select>
+      <button id="download-btn">Download</button>
+    </div>
+    <div id="download-status" style="margin-top: 20px"></div>
+    <script src="renderer.js"></script>
+  </body>
+</html>

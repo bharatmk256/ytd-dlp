@@ -1,0 +1,20 @@
+{
+  "name": "ytd-gui",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "electron": "^37.2.0"
+  },
+  "dependencies": {
+    "youtube-dl-exec": "^3.0.22",
+    "yt-dlp-wrap": "^2.3.12"
+  }
+}
